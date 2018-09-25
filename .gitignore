@@ -1,13 +1,2 @@
-.eslintcache
-/node_modules
-/packages/*/node_modules/
-/coverage
-lerna-debug.log
-npm-debug.log*
-packages/*/build/
-
-website/build/
-website/i18n/*
-website/node_modules
-website/translated_docs
-.idea
+__tests__
+node_modules
