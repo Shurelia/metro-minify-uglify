@@ -1,10 +1,10 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) 2016-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *  strict-local
+ * 
  * @format
  */
 
@@ -16,38 +16,25 @@ const uglify = require('uglify-es');
 
 
 
+function noSourceMap(code) {
+  return minify(code).code;
+}
 
-
-
-function minifier(
+function withSourceMap(
 code,
 sourceMap,
 filename)
-
-{let options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  const result = minify(code, sourceMap, options);
-
-  if (!sourceMap) {
-    return { code: result.code };
-  }
+{
+  const result = minify(code, sourceMap);
 
   const map = JSON.parse(result.map);
-
   map.sources = [filename];
-
   return { code: result.code, map };
 }
 
-function minify(
-inputCode,
-inputMap,
-options)
-{
+function minify(inputCode, inputMap) {
   const result = uglify.minify(inputCode, {
-    mangle: {
-      toplevel: false,
-      reserved: options.reserved },
-
+    mangle: false,
     output: {
       ascii_only: true,
       quote_style: 3,
@@ -74,4 +61,9 @@ options)
 
 }
 
-module.exports = minifier;
+const metroMinifier = {
+  noSourceMap,
+  withSourceMap };
+
+
+module.exports = metroMinifier;
