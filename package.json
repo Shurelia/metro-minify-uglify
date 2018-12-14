@@ -1,11 +1,11 @@
 {
   "name": "metro-minify-uglify",
-  "version": "0.30.2",
-  "description": "🚇 Default minifier for Metro, modified to not minify",
+  "version": "0.45.6",
+  "description": "🚇 Default minifier for Metro",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Shurelia/metro-minify-uglify"
+    "url": "git@github.com:facebook/metro.git"
   },
   "scripts": {
     "prepare-release": "test -d build && rm -rf src.real && mv src src.real && mv build src",
@@ -15,8 +15,5 @@
   "dependencies": {
     "uglify-es": "^3.1.9"
   },
-  "devDependencies": {},
-  "peerDependencies": {
-    "metro": "0.30.2"
-  }
+  "devDependencies": {}
 }
